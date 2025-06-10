@@ -4,24 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bilal Ahmed - Web Developer Portfolio</title>
+    <title>Muhammad Bilal - Professional Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         /* ===== GLOBAL VARIABLES & RESET ===== */
         :root {
-            --primary: #e63946;
-            --primary-dark: #c1121f;
-            --secondary: #ffffff;
-            --dark: #000000;
-            --darker: #121212;
-            --light: #f8f9fa;
-            --gray: #adb5bd;
-            --light-gray: #343a40;
+            --primary: #ffffff;
+            --secondary: #000000;
+            --dark: #0a0a0a;
+            --light: #ffffff;
+            --gray: #b0b0b0;
+            --light-gray: #333333;
             --section-padding: 100px 0;
             --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
             --border-radius: 8px;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --accent: #4e54c8;
+            --accent-light: #6a71e6;
             --card-bg: rgba(30, 30, 30, 0.7);
         }
 
@@ -37,10 +38,11 @@
         }
 
         body {
-            background-color: var(--darker);
+            background-color: var(--dark);
             color: var(--light);
             overflow-x: hidden;
             line-height: 1.6;
+            background: linear-gradient(135deg, var(--dark) 0%, #1a1a1a 100%);
         }
 
         .container {
@@ -52,6 +54,7 @@
 
         section {
             padding: var(--section-padding);
+            position: relative;
         }
 
         .section-title {
@@ -66,6 +69,8 @@
             display: inline-block;
             margin-bottom: 15px;
             font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         .section-title h2::after {
@@ -73,7 +78,7 @@
             position: absolute;
             width: 80px;
             height: 4px;
-            background: var(--gradient);
+            background: var(--accent);
             bottom: -10px;
             left: 50%;
             transform: translateX(-50%);
@@ -90,8 +95,8 @@
         .btn {
             display: inline-block;
             padding: 14px 32px;
-            background: var(--gradient);
-            color: var(--secondary);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--light);
             border-radius: var(--border-radius);
             text-decoration: none;
             font-weight: 600;
@@ -113,14 +118,14 @@
             left: 0;
             width: 0;
             height: 100%;
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
             transition: width 0.5s ease;
             z-index: -1;
         }
 
         .btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(230, 57, 70, 0.3);
+            box-shadow: 0 15px 30px rgba(78, 84, 200, 0.3);
         }
 
         .btn:hover::before {
@@ -130,12 +135,12 @@
         .btn-outline {
             background: transparent;
             color: var(--light);
-            border: 2px solid var(--primary);
+            border: 2px solid var(--accent);
         }
 
         .btn-outline:hover {
-            background: var(--primary);
-            color: var(--secondary);
+            background: var(--accent);
+            color: var(--light);
         }
 
         /* ===== HEADER & NAVIGATION ===== */
@@ -145,16 +150,18 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(0, 0, 0, 0.95);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
-            padding: 20px 0;
+            background: rgba(10, 10, 10, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            padding: 25px 0;
             transition: var(--transition);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(230, 57, 70, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         header.scrolled {
             padding: 15px 0;
+            background: rgba(10, 10, 10, 0.95);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
         }
 
         .nav-container {
@@ -174,11 +181,11 @@
         }
 
         .logo span {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .logo-icon {
-            background: var(--gradient);
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
             width: 40px;
             height: 40px;
             border-radius: 10px;
@@ -186,6 +193,7 @@
             align-items: center;
             justify-content: center;
             font-weight: 700;
+            color: var(--light);
         }
 
         .nav-links {
@@ -208,7 +216,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .nav-links a::after {
@@ -216,7 +224,7 @@
             position: absolute;
             width: 0;
             height: 2px;
-            background: var(--primary);
+            background: var(--accent);
             left: 0;
             bottom: 0;
             transition: width 0.3s ease;
@@ -235,52 +243,57 @@
             font-size: 1.5rem;
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION - WITH WATER EFFECT ===== */
         #hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            background:
-                linear-gradient(135deg, rgba(18, 18, 18, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%),
-                url('https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
             padding-top: 80px;
+        }
+
+        #water-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
         }
 
         .hero-container {
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: space-between;
+            justify-content: center;
             width: 100%;
-            gap: 60px;
+            gap: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         .hero-content {
-            flex: 1;
-            max-width: 750px;
+            max-width: 850px;
             z-index: 2;
             position: relative;
+            padding: 40px;
+            background: rgba(10, 10, 10, 0.6);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .hero-content h1 {
-            font-size: clamp(2.5rem, 7vw, 4.2rem);
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
             margin-bottom: 20px;
             line-height: 1.1;
             font-weight: 800;
             letter-spacing: -1px;
-        }
-
-        .hero-content h1 span {
-            background: var(--gradient);
+            background: linear-gradient(to right, var(--light) 0%, var(--accent) 100%);
             -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            position: relative;
-            display: block;
-            margin-top: 10px;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero-content .subtitle {
@@ -289,80 +302,23 @@
             margin-bottom: 30px;
             font-weight: 400;
             position: relative;
-            padding-left: 20px;
-        }
-
-        .hero-content .subtitle::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 10px;
-            height: 10px;
-            background: var(--primary);
-            border-radius: 50%;
         }
 
         .hero-content p {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--gray);
             margin-bottom: 40px;
-            max-width: 600px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .hero-btns {
             display: flex;
             gap: 20px;
             margin-top: 30px;
-            flex-wrap: wrap;
-        }
-
-        .hero-highlight {
-            background: rgba(230, 57, 70, 0.1);
-            padding: 20px;
-            border-radius: var(--border-radius);
-            border-left: 3px solid var(--primary);
-            margin: 30px 0;
-            max-width: 600px;
-        }
-
-        .hero-highlight p {
-            margin-bottom: 0;
-            font-style: italic;
-            color: var(--gray);
-        }
-
-        .hero-image {
-            flex: 1;
-            position: relative;
-            max-width: 500px;
-            height: 550px;
-            display: flex;
-            align-items: center;
             justify-content: center;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            border: 5px solid rgba(230, 57, 70, 0.1);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
+            flex-wrap: wrap;
         }
 
         .hero-scroll {
@@ -373,7 +329,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            color: var(--primary);
+            color: var(--accent);
             font-size: 0.9rem;
             animation: bounce 2s infinite;
         }
@@ -402,9 +358,9 @@
             }
         }
 
-        /* ===== ABOUT SECTION ===== */
+        /* ===== ABOUT SECTION - UNIQUE DESIGN ===== */
         #about {
-            background-color: var(--darker);
+            background-color: var(--dark);
             position: relative;
             overflow: hidden;
         }
@@ -413,6 +369,21 @@
             display: flex;
             align-items: center;
             gap: 60px;
+            position: relative;
+        }
+
+        .about-container::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: var(--accent);
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.1;
+            z-index: -1;
         }
 
         .about-img {
@@ -421,6 +392,8 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             position: relative;
+            transform: rotate(-3deg);
+            z-index: 1;
         }
 
         .about-img::before {
@@ -430,7 +403,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(230, 57, 70, 0.2), rgba(0, 0, 0, 0.8));
+            background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.8));
             z-index: 1;
         }
 
@@ -444,6 +417,26 @@
 
         .about-content {
             flex: 1;
+            position: relative;
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: var(--border-radius);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transform: rotate(2deg);
+            z-index: 2;
+        }
+
+        .about-content::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            border-right: 3px solid var(--accent);
+            border-bottom: 3px solid var(--accent);
+            z-index: -1;
         }
 
         .about-content h3 {
@@ -453,10 +446,7 @@
         }
 
         .about-content h3 span {
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--accent);
         }
 
         .about-content p {
@@ -475,48 +465,48 @@
         .info-item {
             display: flex;
             align-items: center;
-            background: var(--card-bg);
+            background: rgba(30, 30, 30, 0.5);
             padding: 15px;
             border-radius: var(--border-radius);
             transition: var(--transition);
-            border: 1px solid rgba(230, 57, 70, 0.1);
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
         }
 
         .info-item:hover {
             transform: translateY(-5px);
-            background: rgba(230, 57, 70, 0.1);
-            border-color: rgba(230, 57, 70, 0.3);
+            background: rgba(78, 84, 200, 0.1);
+            border-color: var(--accent);
         }
 
         .info-item i {
-            color: var(--primary);
+            color: var(--accent);
             font-size: 1.2rem;
             margin-right: 15px;
             width: 40px;
             height: 40px;
-            background: rgba(230, 57, 70, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* ===== SKILLS SECTION REDESIGN ===== */
+        /* ===== SKILLS SECTION WITH PROGRESS BARS ===== */
         #skills {
-            background: linear-gradient(135deg, rgba(18, 18, 18, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
             position: relative;
         }
 
-        .skills-grid {
+        .skills-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 35px;
         }
 
         .skill-category {
             background: var(--card-bg);
-            padding: 30px;
+            padding: 35px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
@@ -526,65 +516,79 @@
 
         .skill-category:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(230, 57, 70, 0.2);
-            border-color: rgba(230, 57, 70, 0.3);
+            box-shadow: 0 15px 40px rgba(78, 84, 200, 0.2);
+            border-color: var(--accent);
         }
 
         .skill-header {
             display: flex;
             align-items: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             padding-bottom: 15px;
-            border-bottom: 2px solid rgba(230, 57, 70, 0.3);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.1);
         }
 
         .skill-header i {
             font-size: 2.2rem;
-            background: var(--gradient);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: var(--accent);
             margin-right: 15px;
+            min-width: 50px;
         }
 
         .skill-header h3 {
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--light);
+            font-weight: 600;
         }
 
-        .skill-list {
+        .skills-list {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: 1fr;
+            gap: 25px;
         }
 
         .skill-item {
+            position: relative;
+        }
+
+        .skill-name {
             display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 12px;
-            background: rgba(0, 0, 0, 0.2);
-            border-radius: 6px;
-            transition: var(--transition);
+            justify-content: space-between;
+            margin-bottom: 8px;
         }
 
-        .skill-item:hover {
-            background: rgba(230, 57, 70, 0.1);
-        }
-
-        .skill-item i {
-            color: var(--primary);
-            font-size: 0.9rem;
-        }
-
-        .skill-item span {
+        .skill-name span {
             color: var(--light);
-            font-size: 1rem;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
-        /* ===== PROJECTS SECTION REDESIGN ===== */
+        .skill-name .skill-percent {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            border-radius: 4px;
+            position: relative;
+            width: 0;
+            transition: width 1.5s ease-out;
+        }
+
+        /* ===== PROJECTS SECTION ===== */
         #projects {
-            background-color: var(--darker);
+            background-color: var(--dark);
+            position: relative;
         }
 
         .projects-grid {
@@ -608,8 +612,8 @@
 
         .project-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.3);
-            border-color: rgba(230, 57, 70, 0.3);
+            box-shadow: 0 20px 40px rgba(78, 84, 200, 0.3);
+            border-color: var(--accent);
         }
 
         .project-img {
@@ -656,8 +660,8 @@
         }
 
         .project-tags span {
-            background: rgba(230, 57, 70, 0.1);
-            color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--accent);
             padding: 6px 15px;
             border-radius: 30px;
             font-size: 0.85rem;
@@ -670,7 +674,7 @@
 
         /* ===== CONTACT SECTION ===== */
         #contact {
-            background: linear-gradient(135deg, rgba(18, 18, 18, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
+            background: linear-gradient(135deg, rgba(15, 15, 15, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
         }
 
         .contact-container {
@@ -693,10 +697,10 @@
 
         .contact-item i {
             font-size: 1.8rem;
-            color: var(--primary);
+            color: var(--accent);
             min-width: 60px;
             height: 60px;
-            background: rgba(230, 57, 70, 0.1);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -718,7 +722,7 @@
         }
 
         .contact-details a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .contact-form {
@@ -731,15 +735,18 @@
         }
 
         .form-group {
-            margin-bottom: 25px;
+            position: relative;
+            margin-bottom: 30px;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-            color: var(--light);
-            font-size: 1.1rem;
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            color: var(--gray);
+            transition: var(--transition);
+            pointer-events: none;
+            font-size: 1rem;
         }
 
         .form-group input,
@@ -756,9 +763,21 @@
 
         .form-group input:focus,
         .form-group textarea:focus {
-            border-color: var(--primary);
+            border-color: var(--accent);
             outline: none;
-            box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+            box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.2);
+        }
+
+        .form-group input:focus~label,
+        .form-group input:valid~label,
+        .form-group textarea:focus~label,
+        .form-group textarea:valid~label {
+            top: -10px;
+            left: 10px;
+            background: var(--dark);
+            padding: 0 10px;
+            font-size: 0.85rem;
+            color: var(--accent);
         }
 
         .form-group textarea {
@@ -793,7 +812,7 @@
             position: absolute;
             width: 50px;
             height: 3px;
-            background: var(--gradient);
+            background: var(--accent);
             border-radius: 3px;
             bottom: 0;
             left: 0;
@@ -824,7 +843,8 @@
         }
 
         .social-links a:hover {
-            background: var(--gradient);
+            background: var(--accent);
+            color: var(--light);
             transform: translateY(-5px);
         }
 
@@ -853,18 +873,18 @@
         }
 
         .footer-links a:hover {
-            color: var(--primary);
+            color: var(--accent);
         }
 
         .footer-links a i {
-            color: var(--primary);
+            color: var(--accent);
             font-size: 0.9rem;
         }
 
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid rgba(230, 57, 70, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--gray);
             font-size: 1rem;
         }
@@ -881,30 +901,17 @@
                 max-width: 100%;
             }
 
-            .hero-content .subtitle::before {
-                display: none;
-            }
-
-            .hero-content .subtitle {
-                padding-left: 0;
-            }
-
             .hero-btns {
                 justify-content: center;
             }
 
-            .hero-highlight {
-                margin: 30px auto;
-            }
-
-            .hero-image {
-                max-width: 400px;
-                height: 500px;
-                margin: 0 auto;
-            }
-
             .about-container {
                 flex-direction: column;
+            }
+
+            .about-img,
+            .about-content {
+                transform: rotate(0);
             }
         }
 
@@ -950,11 +957,6 @@
                 font-size: 2.3rem;
             }
 
-            .hero-image {
-                max-width: 350px;
-                height: 450px;
-            }
-
             .info-grid {
                 grid-template-columns: 1fr;
             }
@@ -987,13 +989,12 @@
                 grid-template-columns: 1fr;
             }
 
-            .skill-list {
-                grid-template-columns: 1fr;
+            .contact-container {
+                gap: 30px;
             }
 
-            .hero-image {
-                max-width: 300px;
-                height: 400px;
+            .contact-form {
+                padding: 25px;
             }
         }
     </style>
@@ -1020,36 +1021,29 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Water Effect -->
     <section id="hero">
+        <canvas id="water-canvas"></canvas>
         <div class="container hero-container">
             <div class="hero-content">
-                <h1>Making Digital<br><span>Experiences</span></h1>
-                <div class="subtitle">Web Developer & UI Specialist</div>
-                <p>I have 2 years of experience making websites that work well on all devices and are fun to use. I turn
-                    ideas into real websites using clean code and creative solutions.</p>
-                <div class="hero-highlight">
-                    <p>"Design is not just what it looks like and feels like. Design is how it works."</p>
-                </div>
+                <h1>Creating Digital<br>Masterpieces</h1>
+                <div class="subtitle">Full Stack Developer & UI/UX Designer</div>
+                <p>With 2 years of experience crafting responsive web solutions, I specialize in transforming complex
+                    requirements into elegant, user-friendly interfaces with clean, efficient code.</p>
 
                 <div class="hero-btns">
                     <a href="#projects" class="btn">
-                        <i class="fas fa-code"></i> View My Work
+                        <i class="fas fa-code"></i> View Projects
                     </a>
                     <a href="#contact" class="btn btn-outline">
-                        <i class="fas fa-paper-plane"></i> Hire Me
+                        <i class="fas fa-paper-plane"></i> Get In Touch
                     </a>
                 </div>
-            </div>
-
-            <div class="hero-image">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                    alt="Bilal Ahmed - Web Developer">
             </div>
         </div>
         <div class="hero-scroll">
             <i class="fas fa-chevron-down"></i>
-            <span>Scroll Down</span>
+            <span>Explore My Work</span>
         </div>
     </section>
 
@@ -1058,7 +1052,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>About Me</h2>
-                <p>Get to know me, my background, and what drives me</p>
+                <p>Get to know my journey and professional background</p>
             </div>
             <div class="about-container">
                 <div class="about-img">
@@ -1115,145 +1109,269 @@
                     </div>
 
                     <a href="#" class="btn">
-                        <i class="fas fa-download"></i> Download CV
+                        <i class="fas fa-download"></i> Download Resume
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section Redesigned -->
+    <!-- Skills Section -->
     <section id="skills">
         <div class="container">
             <div class="section-title">
-                <h2>My Skills</h2>
-                <p>Technologies and tools I work with</p>
+                <h2>My Expertise</h2>
+                <p>Technologies and methodologies I master</p>
             </div>
-            <div class="skills-grid">
+            <div class="skills-container">
                 <div class="skill-category">
                     <div class="skill-header">
                         <i class="fab fa-html5"></i>
-                        <h3>Frontend</h3>
+                        <h3>Frontend Development</h3>
                     </div>
-                    <div class="skill-list">
+                    <div class="skills-list">
                         <div class="skill-item">
-                            <i class="fab fa-html5"></i>
-                            <span>HTML5</span>
+                            <div class="skill-name">
+                                <span>HTML5</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-css3-alt"></i>
-                            <span>CSS3</span>
+                            <div class="skill-name">
+                                <span>CSS3 & SASS</span>
+                                <span class="skill-percent">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="95"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-js"></i>
-                            <span>JavaScript</span>
+                            <div class="skill-name">
+                                <span>JavaScript (ES6+)</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-react"></i>
-                            <span>React</span>
+                            <div class="skill-name">
+                                <span>React.js</span>
+                                <span class="skill-percent">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-vuejs"></i>
-                            <span>Vue.js</span>
+                            <div class="skill-name">
+                                <span>Vue.js</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-mobile-alt"></i>
-                            <span>Responsive</span>
+                            <div class="skill-name">
+                                <span>Responsive Design</span>
+                                <span class="skill-percent">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="92"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="skill-category">
                     <div class="skill-header">
                         <i class="fas fa-server"></i>
-                        <h3>Backend</h3>
+                        <h3>Backend Development</h3>
                     </div>
-                    <div class="skill-list">
+                    <div class="skills-list">
                         <div class="skill-item">
-                            <i class="fab fa-node-js"></i>
-                            <span>Node.js</span>
+                            <div class="skill-name">
+                                <span>Node.js</span>
+                                <span class="skill-percent">87%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="87"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-code"></i>
-                            <span>Express</span>
+                            <div class="skill-name">
+                                <span>Express.js</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-php"></i>
-                            <span>PHP</span>
+                            <div class="skill-name">
+                                <span>PHP</span>
+                                <span class="skill-percent">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="70"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-cloud"></i>
-                            <span>REST APIs</span>
+                            <div class="skill-name">
+                                <span>RESTful APIs</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-lock"></i>
-                            <span>Auth</span>
+                            <div class="skill-name">
+                                <span>Authentication</span>
+                                <span class="skill-percent">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            <span>SQL</span>
+                            <div class="skill-name">
+                                <span>SQL</span>
+                                <span class="skill-percent">82%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="82"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="skill-category">
                     <div class="skill-header">
                         <i class="fas fa-database"></i>
-                        <h3>Database</h3>
+                        <h3>Database & DevOps</h3>
                     </div>
-                    <div class="skill-list">
+                    <div class="skills-list">
                         <div class="skill-item">
-                            <i class="fas fa-database"></i>
-                            <span>MySQL</span>
+                            <div class="skill-name">
+                                <span>MySQL</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-leaf"></i>
-                            <span>MongoDB</span>
+                            <div class="skill-name">
+                                <span>MongoDB</span>
+                                <span class="skill-percent">78%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="78"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-google"></i>
-                            <span>Firebase</span>
+                            <div class="skill-name">
+                                <span>Firebase</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-table"></i>
-                            <span>Data Modeling</span>
+                            <div class="skill-name">
+                                <span>Git</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-bolt"></i>
-                            <span>Optimization</span>
+                            <div class="skill-name">
+                                <span>Docker</span>
+                                <span class="skill-percent">65%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="65"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>AWS</span>
+                                <span class="skill-percent">60%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="60"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="skill-category">
                     <div class="skill-header">
-                        <i class="fas fa-tools"></i>
-                        <h3>Tools & DevOps</h3>
+                        <i class="fas fa-paint-brush"></i>
+                        <h3>Design & Tools</h3>
                     </div>
-                    <div class="skill-list">
+                    <div class="skills-list">
                         <div class="skill-item">
-                            <i class="fab fa-git-alt"></i>
-                            <span>Git</span>
+                            <div class="skill-name">
+                                <span>UI/UX Design</span>
+                                <span class="skill-percent">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="88"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-github"></i>
-                            <span>GitHub</span>
+                            <div class="skill-name">
+                                <span>Figma</span>
+                                <span class="skill-percent">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="80"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-docker"></i>
-                            <span>Docker</span>
+                            <div class="skill-name">
+                                <span>CLI Tools</span>
+                                <span class="skill-percent">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="85"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fab fa-aws"></i>
-                            <span>AWS</span>
+                            <div class="skill-name">
+                                <span>Webpack</span>
+                                <span class="skill-percent">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="75"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-sync-alt"></i>
-                            <span>CI/CD</span>
+                            <div class="skill-name">
+                                <span>NPM/Yarn</span>
+                                <span class="skill-percent">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="90"></div>
+                            </div>
                         </div>
                         <div class="skill-item">
-                            <i class="fas fa-vial"></i>
-                            <span>Testing</span>
+                            <div class="skill-name">
+                                <span>Testing</span>
+                                <span class="skill-percent">78%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" data-width="78"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1261,21 +1379,24 @@
         </div>
     </section>
 
-    <!-- Projects Section Redesigned -->
+    <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <div class="section-title">
                 <h2>My Projects</h2>
-                <p>Check out some of my recent work</p>
+                <p>Showcase of my recent work</p>
             </div>
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Health & Fitness Project">
+                        <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Health & Fitness Project">
                     </div>
                     <div class="project-content">
                         <h3>Modern Health & Fitness Platform</h3>
-                        <p>A comprehensive health platform with workout plans, nutrition tracking, and community features. Features include personalized recommendations, progress tracking, and social sharing.</p>
+                        <p>A comprehensive health platform with workout plans, nutrition tracking, and community
+                            features. Features include personalized recommendations, progress tracking, and social
+                            sharing.</p>
                         <div class="project-tags">
                             <span>React</span>
                             <span>Node.js</span>
@@ -1287,14 +1408,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Analytics Dashboard">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Analytics Dashboard">
                     </div>
                     <div class="project-content">
                         <h3>Business Analytics Dashboard</h3>
-                        <p>Real-time analytics dashboard for business metrics visualization. Features interactive charts, custom reports, data filtering, and export functionality.</p>
+                        <p>Real-time analytics dashboard for business metrics visualization. Features interactive
+                            charts, custom reports, data filtering, and export functionality.</p>
                         <div class="project-tags">
                             <span>Vue.js</span>
                             <span>Firebase</span>
@@ -1306,14 +1429,16 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Website">
+                        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Fashion Website">
                     </div>
                     <div class="project-content">
                         <h3>Modern Fashion E-Commerce</h3>
-                        <p>Complete fashion e-commerce solution with product catalog, advanced filtering, shopping cart, secure checkout, and user profiles.</p>
+                        <p>Complete fashion e-commerce solution with product catalog, advanced filtering, shopping cart,
+                            secure checkout, and user profiles.</p>
                         <div class="project-tags">
                             <span>React</span>
                             <span>Node.js</span>
@@ -1370,20 +1495,20 @@
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
+                            <input type="text" id="name" required>
                             <label for="name">Full Name</label>
-                            <input type="text" id="name" placeholder="Enter your name" required>
                         </div>
                         <div class="form-group">
+                            <input type="email" id="email" required>
                             <label for="email">Email Address</label>
-                            <input type="email" id="email" placeholder="Enter your email" required>
                         </div>
                         <div class="form-group">
+                            <input type="text" id="subject" required>
                             <label for="subject">Subject</label>
-                            <input type="text" id="subject" placeholder="Enter subject" required>
                         </div>
                         <div class="form-group">
+                            <textarea id="message" required></textarea>
                             <label for="message">Message</label>
-                            <textarea id="message" placeholder="Enter your message" required></textarea>
                         </div>
                         <button type="submit" class="btn">Send Message</button>
                     </form>
@@ -1397,8 +1522,9 @@
         <div class="container">
             <div class="footer-container">
                 <div class="footer-col">
-                    <h3>Bilal Ahmed</h3>
-                    <p>Creating nice and practical websites that help businesses do better on the web.</p>
+                    <h3>Muhammad Bilal</h3>
+                    <p>Creating elegant and functional web experiences that help businesses thrive in the digital world.
+                    </p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -1432,7 +1558,8 @@
                     <ul class="footer-links">
                         <li><a href="#"><i class="fas fa-map-marker-alt"></i> Karachi, Pakistan</a></li>
                         <li><a href="tel:+923001234567"><i class="fas fa-phone"></i> +92 300 2268322</a></li>
-                        <li><a href="mailto:bilal@example.com"><i class="fas fa-envelope"></i> codewithbilalonline@gmail.com</a>
+                        <li><a href="mailto:bilal@example.com"><i class="fas fa-envelope"></i>
+                                codewithbilalonline@gmail.com</a>
                         </li>
                     </ul>
                 </div>
@@ -1442,7 +1569,12 @@
             </div>
         </div>
     </footer>
-
-    <!-- JavaScript will be added separately below -->
 </body>
 </html>
+
+
+
+
+
+
+<!-- yr ye website achi banai he magar mene tumhe bola tha mujhe ye design nhi chaye koi or design ki website bana krdo mujhe ye design pasand hi nhi arhi he koi or design ki website banano kuch unique banao aik hi cheez bar bar bana dete ho -->

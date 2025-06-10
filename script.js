@@ -83,33 +83,92 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// ===== ANIMATE ELEMENTS ON SCROLL =====
-const observer = new IntersectionObserver((entries) => {
+// ===== ANIMATE SKILL BARS ON SCROLL =====
+const skillBars = document.querySelectorAll('.skill-progress');
+
+const animateSkillBars = () => {
+    skillBars.forEach(bar => {
+        const width = bar.getAttribute('data-width');
+        bar.style.width = width + '%';
+    });
+};
+
+const skillsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
+            animateSkillBars();
+            skillsObserver.unobserve(entry.target);
         }
     });
-}, {
-    threshold: 0.1
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.skill-category').forEach(element => {
+    skillsObserver.observe(element);
 });
 
-document.querySelectorAll('.skill-category, .project-card, .about-img, .about-content, .hero-image').forEach(element => {
-    observer.observe(element);
+// ===== WATER EFFECT FOR HERO SECTION =====
+const canvas = document.getElementById('water-canvas');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 });
 
-// ===== TYPEWRITER EFFECT =====
-const typeWriter = (element, text, i = 0) => {
-    if (i < text.length) {
-        element.innerHTML = text.substring(0, i + 1) + '<span class="blinking-cursor">|</span>';
-        setTimeout(() => typeWriter(element, text, i + 1), 100);
+const drops = [];
+const maxDrops = 100;
+
+for (let i = 0; i < maxDrops; i++) {
+    drops.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 2 + 1,
+        speed: Math.random() * 0.5 + 0.1
+    });
+}
+
+function drawWaterEffect() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(10, 10, 10, 0.1)';
+    ctx.beginPath();
+
+    for (let i = 0; i < maxDrops; i++) {
+        const drop = drops[i];
+        ctx.moveTo(drop.x, drop.y);
+        ctx.arc(drop.x, drop.y, drop.radius, 0, Math.PI * 2);
+        drop.y += drop.speed;
+
+        if (drop.y > canvas.height) {
+            drop.y = 0;
+            drop.x = Math.random() * canvas.width;
+        }
     }
+
+    ctx.fill();
+    requestAnimationFrame(drawWaterEffect);
 }
 
-// Apply typewriter effect to hero subtitle
-const subtitle = document.querySelector('.hero-content .subtitle');
-if (subtitle) {
-    const text = subtitle.textContent;
-    subtitle.textContent = '';
-    setTimeout(() => typeWriter(subtitle, text), 1000);
-}
+// Start the animation
+drawWaterEffect();
+
+// Add mouse interaction
+canvas.addEventListener('mousemove', (e) => {
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+
+    for (let i = 0; i < maxDrops; i++) {
+        const drop = drops[i];
+        const dx = mouseX - drop.x;
+        const dy = mouseY - drop.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 100) {
+            const force = (100 - distance) / 100;
+            drop.x += dx * force * 0.05;
+            drop.y += dy * force * 0.05;
+        }
+    }
+});
