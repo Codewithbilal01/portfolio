@@ -1,4 +1,3 @@
-
 // ===== HEADER SCROLL EFFECT =====
 window.addEventListener('scroll', () => {
     const header = document.getElementById('header');
@@ -95,7 +94,7 @@ const observer = new IntersectionObserver((entries) => {
     threshold: 0.1
 });
 
-document.querySelectorAll('.skill-card, .project-card, .about-img, .about-content, .hero-image').forEach(element => {
+document.querySelectorAll('.skill-category, .project-card, .about-img, .about-content, .hero-image').forEach(element => {
     observer.observe(element);
 });
 

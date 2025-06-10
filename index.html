@@ -10,12 +10,9 @@
         /* ===== GLOBAL VARIABLES & RESET ===== */
         :root {
             --primary: #e63946;
-            /* Vibrant red */
             --primary-dark: #c1121f;
             --secondary: #ffffff;
-            /* Pure white */
             --dark: #000000;
-            /* True black */
             --darker: #121212;
             --light: #f8f9fa;
             --gray: #adb5bd;
@@ -25,6 +22,7 @@
             --border-radius: 8px;
             --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
             --gradient: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            --card-bg: rgba(30, 30, 30, 0.7);
         }
 
         * {
@@ -63,7 +61,7 @@
         }
 
         .section-title h2 {
-            font-size: 2.8rem;
+            font-size: clamp(2rem, 5vw, 2.8rem);
             color: var(--light);
             display: inline-block;
             margin-bottom: 15px;
@@ -86,7 +84,7 @@
             color: var(--gray);
             max-width: 700px;
             margin: 25px auto 0;
-            font-size: 1.1rem;
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
         }
 
         .btn {
@@ -239,7 +237,7 @@
 
         /* ===== HERO SECTION ===== */
         #hero {
-            min-height: 125vh;
+            min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
@@ -250,7 +248,6 @@
             background-size: cover;
             background-position: center;
             padding-top: 80px;
-            /* Added padding to prevent header overlap */
         }
 
         .hero-container {
@@ -269,11 +266,11 @@
         }
 
         .hero-content h1 {
-            font-size: 4.2rem;
+            font-size: clamp(2.5rem, 7vw, 4.2rem);
             margin-bottom: 20px;
             line-height: 1.1;
             font-weight: 800;
-            letter-spacing: -1.5px;
+            letter-spacing: -1px;
         }
 
         .hero-content h1 span {
@@ -287,7 +284,7 @@
         }
 
         .hero-content .subtitle {
-            font-size: 1.8rem;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
             color: var(--gray);
             margin-bottom: 30px;
             font-weight: 400;
@@ -308,7 +305,7 @@
         }
 
         .hero-content p {
-            font-size: 1.2rem;
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
             color: var(--gray);
             margin-bottom: 40px;
             max-width: 600px;
@@ -450,7 +447,7 @@
         }
 
         .about-content h3 {
-            font-size: 2.5rem;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
             margin-bottom: 25px;
             color: var(--light);
         }
@@ -465,7 +462,7 @@
         .about-content p {
             margin-bottom: 20px;
             color: var(--gray);
-            font-size: 1.1rem;
+            font-size: clamp(0.95rem, 2.5vw, 1.1rem);
         }
 
         .info-grid {
@@ -478,11 +475,12 @@
         .info-item {
             display: flex;
             align-items: center;
-            background: rgba(40, 40, 40, 0.5);
+            background: var(--card-bg);
             padding: 15px;
             border-radius: var(--border-radius);
             transition: var(--transition);
             border: 1px solid rgba(230, 57, 70, 0.1);
+            backdrop-filter: blur(10px);
         }
 
         .info-item:hover {
@@ -504,83 +502,118 @@
             justify-content: center;
         }
 
-        /* ===== SKILLS SECTION ===== */
+        /* ===== SKILLS SECTION REDESIGN ===== */
         #skills {
             background: linear-gradient(135deg, rgba(18, 18, 18, 0.95) 0%, rgba(0, 0, 0, 0.95) 100%);
             position: relative;
         }
 
-        .skills-container {
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
         }
 
-        .skill-card {
-            background: rgba(40, 40, 40, 0.5);
-            padding: 40px 30px;
+        .skill-category {
+            background: var(--card-bg);
+            padding: 30px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             transition: var(--transition);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(230, 57, 70, 0.1);
-            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .skill-card:hover {
-            transform: translateY(-15px);
+        .skill-category:hover {
+            transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(230, 57, 70, 0.2);
             border-color: rgba(230, 57, 70, 0.3);
         }
 
-        .skill-card i {
-            font-size: 3.5rem;
+        .skill-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(230, 57, 70, 0.3);
+        }
+
+        .skill-header i {
+            font-size: 2.2rem;
             background: var(--gradient);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 25px;
+            margin-right: 15px;
         }
 
-        .skill-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 20px;
+        .skill-header h3 {
+            font-size: 1.5rem;
             color: var(--light);
         }
 
-        .skill-card p {
-            color: var(--gray);
+        .skill-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
-        /* ===== PROJECTS SECTION ===== */
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .skill-item:hover {
+            background: rgba(230, 57, 70, 0.1);
+        }
+
+        .skill-item i {
+            color: var(--primary);
+            font-size: 0.9rem;
+        }
+
+        .skill-item span {
+            color: var(--light);
+            font-size: 1rem;
+        }
+
+        /* ===== PROJECTS SECTION REDESIGN ===== */
         #projects {
             background-color: var(--darker);
         }
 
-        .projects-container {
+        .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 40px;
+            gap: 35px;
         }
 
         .project-card {
-            background: rgba(40, 40, 40, 0.5);
+            background: var(--card-bg);
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(230, 57, 70, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .project-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(230, 57, 70, 0.3);
             border-color: rgba(230, 57, 70, 0.3);
         }
 
         .project-img {
-            height: 250px;
+            height: 220px;
             overflow: hidden;
             position: relative;
         }
@@ -598,10 +631,13 @@
 
         .project-content {
             padding: 30px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
 
         .project-content h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--light);
         }
@@ -609,6 +645,7 @@
         .project-content p {
             color: var(--gray);
             margin-bottom: 25px;
+            flex-grow: 1;
         }
 
         .project-tags {
@@ -621,10 +658,14 @@
         .project-tags span {
             background: rgba(230, 57, 70, 0.1);
             color: var(--primary);
-            padding: 8px 20px;
+            padding: 6px 15px;
             border-radius: 30px;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 500;
+        }
+
+        .project-actions {
+            margin-top: auto;
         }
 
         /* ===== CONTACT SECTION ===== */
@@ -681,12 +722,12 @@
         }
 
         .contact-form {
-            background: rgba(40, 40, 40, 0.5);
+            background: var(--card-bg);
             padding: 40px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(230, 57, 70, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .form-group {
@@ -861,15 +902,15 @@
                 height: 500px;
                 margin: 0 auto;
             }
+
+            .about-container {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 992px) {
             .hero-content h1 {
                 font-size: 3.5rem;
-            }
-
-            .about-container {
-                flex-direction: column;
             }
         }
 
@@ -913,6 +954,10 @@
                 max-width: 350px;
                 height: 450px;
             }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 576px) {
@@ -921,7 +966,7 @@
             }
 
             .hero-content h1 {
-                font-size: 2.3rem;
+                font-size: 2.5rem;
             }
 
             .hero-content .subtitle {
@@ -938,11 +983,11 @@
                 text-align: center;
             }
 
-            .projects-container {
+            .projects-grid {
                 grid-template-columns: 1fr;
             }
 
-            .info-grid {
+            .skill-list {
                 grid-template-columns: 1fr;
             }
 
@@ -1027,7 +1072,7 @@
                         JavaScript, React, Node.js, Express, and databases like MySQL and MongoDB.</p>
 
                     <p>My web development journey started with a love for creating websites and digital experiences. In
-                        the past two years, I’ve worked on different types of projects that helped me improve my skills.
+                        the past two years, I've worked on different types of projects that helped me improve my skills.
                         I focus on making easy-to-use designs and solving problems with clean and efficient code.</p>
 
                     <div class="info-grid">
@@ -1077,94 +1122,207 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- Skills Section Redesigned -->
     <section id="skills">
         <div class="container">
             <div class="section-title">
                 <h2>My Skills</h2>
                 <p>Technologies and tools I work with</p>
             </div>
-            <div class="skills-container">
-                <div class="skill-card">
-                    <i class="fab fa-html5"></i>
-                    <h3>Frontend Development</h3>
-                    <p>HTML5, CSS3, JavaScript, React, Vue.js, Responsive Design, Bootstrap, Tailwind CSS</p>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <i class="fab fa-html5"></i>
+                        <h3>Frontend</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-vuejs"></i>
+                            <span>Vue.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Responsive</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <i class="fas fa-server"></i>
-                    <h3>Backend Development</h3>
-                    <p>Node.js, Express, PHP, RESTful APIs, Database Design, Authentication</p>
+                
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <i class="fas fa-server"></i>
+                        <h3>Backend</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-code"></i>
+                            <span>Express</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-php"></i>
+                            <span>PHP</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-cloud"></i>
+                            <span>REST APIs</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-lock"></i>
+                            <span>Auth</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i>
+                            <span>SQL</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <i class="fas fa-database"></i>
-                    <h3>Database</h3>
-                    <p>MySQL, MongoDB, Firebase, Data Modeling, Query Optimization</p>
+                
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <i class="fas fa-database"></i>
+                        <h3>Database</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <i class="fas fa-database"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-google"></i>
+                            <span>Firebase</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-table"></i>
+                            <span>Data Modeling</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-bolt"></i>
+                            <span>Optimization</span>
+                        </div>
+                    </div>
                 </div>
-                <div class="skill-card">
-                    <i class="fas fa-tools"></i>
-                    <h3>Tools & DevOps</h3>
-                    <p>Git, GitHub, Docker, Webpack, AWS, CI/CD, Testing (Jest, Mocha)</p>
+                
+                <div class="skill-category">
+                    <div class="skill-header">
+                        <i class="fas fa-tools"></i>
+                        <h3>Tools & DevOps</h3>
+                    </div>
+                    <div class="skill-list">
+                        <div class="skill-item">
+                            <i class="fab fa-git-alt"></i>
+                            <span>Git</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-github"></i>
+                            <span>GitHub</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-docker"></i>
+                            <span>Docker</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-aws"></i>
+                            <span>AWS</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-sync-alt"></i>
+                            <span>CI/CD</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-vial"></i>
+                            <span>Testing</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section Redesigned -->
     <section id="projects">
         <div class="container">
             <div class="section-title">
                 <h2>My Projects</h2>
                 <p>Check out some of my recent work</p>
             </div>
-            <div class="projects-container">
+            <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="webimages/healthy-lifestyle-running-outdoors.jpg" alt="Health & fitness Project">
+                        <img src="https://images.unsplash.com/photo-1516387938699-a93567ec168e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Health & Fitness Project">
                     </div>
                     <div class="project-content">
-                        <h3>Modern Health and Fitness Platform</h3>
-                        <p>A fully responsive health and fitness platform with product catalog, cart functionality, and
-                            secure
-                            checkout.</p>
+                        <h3>Modern Health & Fitness Platform</h3>
+                        <p>A comprehensive health platform with workout plans, nutrition tracking, and community features. Features include personalized recommendations, progress tracking, and social sharing.</p>
                         <div class="project-tags">
                             <span>React</span>
                             <span>Node.js</span>
                             <span>MongoDB</span>
+                            <span>Redux</span>
                         </div>
-                        <a href="#" class="btn">View Project</a>
+                        <div class="project-actions">
+                            <a href="#" class="btn">View Project</a>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="webimages/data-analytics-tablet.jpg" alt="Dashboard Project">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Analytics Dashboard">
                     </div>
                     <div class="project-content">
-                        <h3>Analytics Dashboard</h3>
-                        <p>A data visualization dashboard for business analytics with interactive charts and real-time
-                            updates.</p>
+                        <h3>Business Analytics Dashboard</h3>
+                        <p>Real-time analytics dashboard for business metrics visualization. Features interactive charts, custom reports, data filtering, and export functionality.</p>
                         <div class="project-tags">
                             <span>Vue.js</span>
                             <span>Firebase</span>
                             <span>D3.js</span>
+                            <span>Chart.js</span>
                         </div>
-                        <a href="#" class="btn">View Project</a>
+                        <div class="project-actions">
+                            <a href="#" class="btn">View Project</a>
+                        </div>
                     </div>
                 </div>
+                
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="webimages/fast-fashion-concept-with-full-clothing-store.jpg" alt="Fashion website">
+                        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Fashion Website">
                     </div>
                     <div class="project-content">
-                        <h3>Fashion Website</h3>
-                        <p>A stylish fashion website that showcases the latest trends, outfits, and accessories. It
-                            features modern design, smooth navigation, and updated collections to help users discover
-                            and shop with ease.</p>
+                        <h3>Modern Fashion E-Commerce</h3>
+                        <p>Complete fashion e-commerce solution with product catalog, advanced filtering, shopping cart, secure checkout, and user profiles.</p>
                         <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                            <span>Stripe API</span>
                         </div>
-                        <a href="#" class="btn">View Project</a>
+                        <div class="project-actions">
+                            <a href="#" class="btn">View Project</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1284,5 +1442,7 @@
             </div>
         </div>
     </footer>
+
+    <!-- JavaScript will be added separately below -->
 </body>
 </html>
