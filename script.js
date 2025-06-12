@@ -1,0 +1,55 @@
+// Smooth scrolling for navigation links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+
+        // Close mobile menu if open
+        if (window.innerWidth <= 768) {
+            navLinks.style.display = 'none';
+        }
+    });
+});
+
+// Mobile menu toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu');
+const navLinks = document.querySelector('.nav-links');
+
+mobileMenuBtn.addEventListener('click', () => {
+    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+});
+
+// Animation on scroll
+const fadeElements = document.querySelectorAll('.fade-in');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in');
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+fadeElements.forEach(el => {
+    observer.observe(el);
+});
+
+// Form submission
+const contactForm = document.querySelector('.contact-form form');
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for your message! I will get back to you soon.');
+        contactForm.reset();
+    });
+}
+
+// Add floating effect to hero image
+const heroImage = document.querySelector('.hero-image');
+if (heroImage) {
+    heroImage.classList.add('floating');
+}
