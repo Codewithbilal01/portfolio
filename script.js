@@ -1,3 +1,23 @@
+// Mobile menu toggle
+const mobileMenuBtn = document.querySelector('.mobile-menu');
+const closeMenuBtn = document.querySelector('.close-menu');
+const mobileNav = document.querySelector('.mobile-nav');
+
+mobileMenuBtn.addEventListener('click', () => {
+    mobileNav.classList.add('active');
+});
+
+closeMenuBtn.addEventListener('click', () => {
+    mobileNav.classList.remove('active');
+});
+
+// Close mobile menu when clicking on links
+document.querySelectorAll('.mobile-nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        mobileNav.classList.remove('active');
+    });
+});
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -5,20 +25,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         document.querySelector(this.getAttribute('href')).scrollIntoView({
             behavior: 'smooth'
         });
-
-        // Close mobile menu if open
-        if (window.innerWidth <= 768) {
-            navLinks.style.display = 'none';
-        }
     });
-});
-
-// Mobile menu toggle
-const mobileMenuBtn = document.querySelector('.mobile-menu');
-const navLinks = document.querySelector('.nav-links');
-
-mobileMenuBtn.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
 });
 
 // Animation on scroll
