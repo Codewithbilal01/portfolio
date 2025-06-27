@@ -29,20 +29,26 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Animation on scroll
-const fadeElements = document.querySelectorAll('.fade-in');
+const revealElements = document.querySelectorAll('.reveal');
+const projectCards = document.querySelectorAll('.project-card');
 
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.classList.add('fade-in');
+            entry.target.classList.add('in-view');
         }
     });
 }, {
-    threshold: 0.1
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
 });
 
-fadeElements.forEach(el => {
+revealElements.forEach(el => {
     observer.observe(el);
+});
+
+projectCards.forEach(card => {
+    observer.observe(card);
 });
 
 // Form submission
@@ -55,8 +61,21 @@ if (contactForm) {
     });
 }
 
+// Back to top button
+const backToTop = document.querySelector('.back-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTop.style.opacity = '1';
+        backToTop.style.visibility = 'visible';
+    } else {
+        backToTop.style.opacity = '0';
+        backToTop.style.visibility = 'hidden';
+    }
+});
+
 // Add floating effect to hero image
 const heroImage = document.querySelector('.hero-image');
 if (heroImage) {
-    heroImage.classList.add('floating');
+    heroImage.style.animation = 'float 6s ease-in-out infinite';
 }

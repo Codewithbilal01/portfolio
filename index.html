@@ -188,6 +188,7 @@
             font-size: 0.9rem;
             margin-right: 1rem;
             margin-top: 1rem;
+            cursor: pointer;
         }
 
         .cta-button:hover {
@@ -200,7 +201,7 @@
         /* Hero Image */
         .hero-image {
             position: relative;
-            border-radius: 20px;
+            border-radius: 50%;
             overflow: hidden;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             border: 5px solid rgba(255, 255, 255, 0.05);
@@ -208,12 +209,8 @@
             width: 400px;
             height: 400px;
             margin: 0 auto;
-            z-index: 1; /* Ensure image stays below header */
-        }
-
-        .hero-image:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px -10px rgba(76, 175, 80, 0.3);
+            z-index: 1;
+            animation: float 6s ease-in-out infinite;
         }
 
         .hero-image img {
@@ -226,7 +223,7 @@
 
         /* Section Styling - Reduced Gap */
         section {
-            padding: 4rem 0; /* Reduced from 6rem */
+            padding: 4rem 0;
             position: relative;
         }
 
@@ -260,7 +257,7 @@
 
         /* About Section - Reduced Top Gap */
         .about {
-            padding-top: 2rem; /* Reduced top gap */
+            padding-top: 2rem;
         }
 
         .about-content {
@@ -380,6 +377,14 @@
             transition: var(--transition);
             border: 1px solid rgba(76, 175, 80, 0.1);
             position: relative;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.6s ease, opacity 0.6s ease;
+        }
+
+        .project-card.in-view {
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .project-card:hover {
@@ -448,6 +453,7 @@
             display: flex;
             align-items: center;
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .project-links a:hover {
@@ -501,6 +507,7 @@
             color: var(--light);
             text-decoration: none;
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .contact-text a:hover {
@@ -522,6 +529,7 @@
             background: rgba(255, 255, 255, 0.05);
             color: var(--light);
             transition: var(--transition);
+            cursor: pointer;
         }
 
         .social-links a:hover {
@@ -558,12 +566,33 @@
             resize: vertical;
         }
 
+        .contact-form button {
+            cursor: pointer;
+        }
+
         /* Footer */
         footer {
             background: var(--darker);
             padding: 3rem 0;
             text-align: center;
             border-top: 1px solid rgba(76, 175, 80, 0.1);
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--primary), transparent);
+        }
+
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         .footer-logo {
@@ -575,11 +604,19 @@
             display: block;
         }
 
+        .footer-tagline {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.8;
+        }
+
         .footer-links {
             display: flex;
             justify-content: center;
             list-style: none;
             margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
 
         .footer-links li {
@@ -590,15 +627,52 @@
             color: var(--light);
             text-decoration: none;
             transition: var(--transition);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
         }
 
         .footer-links a:hover {
             color: var(--primary);
         }
 
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
         .copyright {
             opacity: 0.6;
             font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        .back-to-top {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            color: var(--primary);
+            line-height: 40px;
+            text-align: center;
+            margin-top: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary);
+            color: var(--light);
+            transform: translateY(-5px);
         }
 
         /* Mobile Navigation */
@@ -701,9 +775,8 @@
                 height: 300px;
             }
 
-            /* Fix hero section overlap */
             .hero {
-                padding-top: 100px; /* Increased padding for mobile */
+                padding-top: 100px;
             }
         }
 
@@ -721,13 +794,10 @@
             }
 
             .footer-links {
-                flex-wrap: wrap;
+                flex-direction: column;
+                gap: 0.8rem;
             }
 
-            .footer-links li {
-                margin: 0.5rem;
-            }
-            
             .hero-image {
                 width: 250px;
                 height: 250px;
@@ -769,6 +839,18 @@
         .floating {
             animation: float 4s ease-in-out infinite;
         }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 
@@ -809,18 +891,17 @@
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text fade-in">
-                    <h1>Full Stack <span>Web Developer</span></h1>
-                    <p>With 2 years of experience in creating high-performance web applications. I specialize in
-                        crafting efficient, scalable solutions that solve real-world problems.</p>
+                    <h1>Muhammad Bilal <span>Web Developer</span></h1>
+                    <p>I have 2 years of experience building fast and powerful websites. I focus on creating smart and scalable solutions that help solve real-life 
+                    problems.</p>
                     <div>
                         <a href="#projects" class="cta-button">View My Work</a>
                         <a href="#contact" class="cta-button"
                             style="background: transparent; color: var(--primary);">Contact Me</a>
                     </div>
                 </div>
-                <div class="hero-image floating">
-                    <!-- Note: Actual image should have transparent background -->
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                <div class="hero-image">
+                    <img src="images/profile.jpg"
                         alt="Muhammad Bilal - Full Stack Developer">
                 </div>
             </div>
@@ -833,7 +914,7 @@
             <div class="section-title">
                 <h2>About Me</h2>
             </div>
-            <div class="about-content">
+            <div class="about-content reveal">
                 <div class="about-text">
                     <h3>Building Digital Solutions That Matter</h3>
                     <p>Hello! I'm Muhammad Bilal, a passionate Full Stack Web Developer based in Pakistan. With 2 years
@@ -845,22 +926,22 @@
                         projects, or sharing my knowledge with the developer community.</p>
                 </div>
                 <div class="about-stats">
-                    <div class="stat-box">
+                    <div class="stat-box reveal">
                         <i class="fas fa-code"></i>
                         <h4>50+</h4>
                         <p>Projects Completed</p>
                     </div>
-                    <div class="stat-box">
+                    <div class="stat-box reveal">
                         <i class="fas fa-users"></i>
                         <h4>30+</h4>
                         <p>Happy Clients</p>
                     </div>
-                    <div class="stat-box">
+                    <div class="stat-box reveal">
                         <i class="fas fa-hourglass-half"></i>
                         <h4>2+ Years</h4>
                         <p>Experience</p>
                     </div>
-                    <div class="stat-box">
+                    <div class="stat-box reveal">
                         <i class="fas fa-rocket"></i>
                         <h4>24/7</h4>
                         <p>Support Available</p>
@@ -876,7 +957,7 @@
             <div class="section-title">
                 <h2>My Skills</h2>
             </div>
-            <div class="skills-container">
+            <div class="skills-container reveal">
                 <div class="skill-category">
                     <h3><i class="fas fa-laptop-code"></i> Frontend Development</h3>
                     <div class="skill-item">
@@ -968,7 +1049,7 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                        <img src="https://media.istockphoto.com/id/177547733/photo/wrist-watch.jpg?s=612x612&w=0&k=20&c=XwYy2SHk68baSF-iK104tAHEm2Jio5idYnriPYmkgHI="
                             alt="E-Commerce Platform">
                     </div>
                     <div class="project-content">
@@ -987,30 +1068,30 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                        <img src="https://media.istockphoto.com/id/1284843352/photo/the-technicians-are-cleaning-the-air-conditioner-by-spraying-water-hand-and-water-spray-are.jpg?s=612x612&w=0&k=20&c=pfIt5M1vW3W5v-5eF0yWFisMIVIR9pRokHQpiJnD7Xk="
                             alt="Task Management System">
                     </div>
                     <div class="project-content">
-                        <h3>Task Management System</h3>
-                        <p>Enterprise-level task management application with real-time updates, team collaboration, and
-                            analytics.</p>
+                        <h3>HVAC Duct Solution</h3>
+                        <p>Professional HVAC duct cleaning website with service highlights, responsive design, and lead generation features for customer engagement.</p>
                         <div class="project-tags">
-                            <span class="tag">Vue.js</span>
-                            <span class="tag">Firebase</span>
-                            <span class="tag">Vuex</span>
-                            <span class="tag">Tailwind CSS</span>
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
                         </div>
                         <div class="project-links">
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#"><i class="fab fa-github"></i> Source Code</a>
+                            <a href="https://codewithbilal01.github.io/hvacductsolution/"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://github.com/Codewithbilal01/hvacductsolution"><i class="fab fa-github"></i> Source Code</a>
                         </div>
                     </div>
                 </div>
+
                 <div class="project-card">
                     <div class="project-img">
-                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
+                        <img src="https://media.istockphoto.com/id/1954841243/photo/data-analysis-chart-graph-3d-statistics-background.jpg?s=612x612&w=0&k=20&c=ND1TwnxWkA-BBxZoetqEP19opzWTRTt6GcGNtZ8ImKg="
                             alt="Financial Dashboard">
                     </div>
                     <div class="project-content">
@@ -1039,7 +1120,7 @@
             <div class="section-title">
                 <h2>Get In Touch</h2>
             </div>
-            <div class="contact-container">
+            <div class="contact-container reveal">
                 <div class="contact-info">
                     <h3>Let's Talk About Your Project</h3>
                     <p>Feel free to reach out if you want to collaborate with me, or simply have a chat.</p>
@@ -1062,7 +1143,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                             <div class="contact-text">
                                 <h4>Location</h4>
-                                <p>Lahore, Pakistan</p>
+                                <p>Karachi, Pakistan</p>
                             </div>
                         </div>
                     </div>
@@ -1097,16 +1178,23 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <a href="#" class="footer-logo">Muhammad Bilal</a>
-            <ul class="footer-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <p class="copyright">© 2025 Muhammad Bilal. All Rights Reserved.</p>
+            <div class="footer-content">
+                <a href="#" class="footer-logo">Muhammad Bilal</a>
+                <p class="footer-tagline">Crafting exceptional digital experiences with clean code and innovative solutions</p>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <p class="copyright">© 2025 Muhammad Bilal. All Rights Reserved.</p>
+                <a href="#home" class="back-to-top">
+                    <i class="fas fa-arrow-up"></i>
+                </a>
+            </div>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
